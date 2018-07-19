@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <router-view/>
-    <BottomBar></BottomBar>
+    <router-view class="content" />
+    <BottomBar class="bottom-bar"></BottomBar>
   </div>
 </template>
 <script>
@@ -14,4 +14,16 @@ export default {
 </script>
 
 <style lang="scss">
+*{
+  margin: 0;
+}
+html,body,#app{
+  height: 100%;;
+}
+.content{
+  height: 92%;
+}
+.bottom-bar{
+  height: 8%;
+}
 </style>

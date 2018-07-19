@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import Trend from './views/Trend.vue'
+import Activity from './views/Activity.vue'
 import Push from './views/Push.vue'
-import Find from './views/Find.vue'
-import My from './views/My.vue'
+import Discovery from './views/Discovery.vue'
+import Personal from './views/Personal.vue'
 import Follow from './views/Home/Follow.vue'
 import Nearby from './views/Home/Nearby.vue'
 import Recommend from './views/Home/Recommend.vue'
@@ -40,9 +40,9 @@ export default new Router({
       ]
     },
     {
-      path: '/trend',
-      name: 'trend',
-      component: Trend
+      path: '/activity',
+      name: 'activity',
+      component: Activity
     },
     {
       path: '/push',
@@ -50,14 +50,14 @@ export default new Router({
       component: Push
     },
     {
-      path: 'find',
-      name: 'find',
-      component: Find
+      path: 'discovery',
+      name: 'discovery',
+      component: Discovery
     },
     {
-      path: '/my',
-      name: 'my',
-      component: My
+      path: '/personal',
+      name: 'personal',
+      component: Personal
     }
   ]
 })
