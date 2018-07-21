@@ -50,7 +50,7 @@ export default new Router({
       component: Push
     },
     {
-      path: 'discovery',
+      path: '/discovery',
       name: 'discovery',
       component: Discovery
     },

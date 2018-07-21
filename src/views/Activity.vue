@@ -1,4 +1,4 @@
 <template>
-  <div class="trend">
+  <div class="activity">
   </div>
 </template>
