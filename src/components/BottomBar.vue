@@ -5,7 +5,9 @@
     <div v-if="tab.route == 'personal'" class="tab-notification" v-show="$store.state.showMessage" style="transform:none;">
         <img :src="notificationSrc">{{$store.state.messageCount}}
     </div>
-    <img :src="tab.route == activeTab ? tab.selected:tab.unselected">
+    <div class="tab-img">
+      <img :src="tab.route == activeTab ? tab.selected:tab.unselected">
+    </div>
     <p v-if="tab.name">{{tab.name}}</p>
   </div>
 </div>
@@ -15,7 +17,7 @@
 export default {
   name: 'BottomBar',
   props: {
-    tabs: Array
+    tabs: Array // 传入的tabs
   },
   data () {
     return {
@@ -25,9 +27,11 @@ export default {
     }
   },
   methods: {
-    handleBtmTab (tab) {
+    handleBtmTab (tab) { // 处理路由
       if (tab.canChange) {
         this.activeTab = tab.route
+        this.$router.push(`/main/${tab.route}`)
+      } else {
         this.$router.push(`/${tab.route}`)
       }
     }
@@ -35,13 +39,17 @@ export default {
   watch: {
   },
   mounted () {
-    if (this.$store.state.hasMessage) {
+    if (this.$store.state.hasMessage) { // 测试用
       this.$store.commit('letMessageShow')
     }
   }
 }
 </script>
 <style lang="scss">
+@mixin tabScale($scale,$time){
+  transform: scale($scale);
+  transition: all $time ease;
+}
 .bottom-tab{
   display: flex;
   box-shadow: 0 -1px 2px #ccc;
@@ -58,36 +66,39 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    > img{
-      height: 35%;
+    .tab-img{
       width: 35%;
-      user-select:none;
-      pointer-events: none;
-      transition: all 0.5s ease;
+      img{
+        width: 100%;
+        user-select:none;
+        pointer-events: none;
+      }
     }
     p{
       font-size: 0.75rem;
-      transition: all 0.5s ease;
     }
     .tab-badge{
       color: $jike-yellow;
+      width: 35%;
       position: absolute;
       top: 0rem;
       right: 0.5rem;
     }
   }
 }
-.active-bottom-tab>img,
-.active-bottom-tab>p{
-  transform: scale(1.1);
-  transition: all 0.5s ease;
+.active-bottom-tab{
+  >p,.tab-img{
+  @include tabScale(1.1, 0.3s);
   color: $jike-blue;
+  // animation:blah 1s;
+  }
 }
 .tab-notification{
   position: absolute;
   width: 100%;
   height: 60%;
   top: -80%;
+  font-size: 0.8rem;
   background-color: $jike-yellow;
   color: black;
   border-radius: 0.5rem;
@@ -95,7 +106,8 @@ export default {
   justify-content: center;
   align-items: center;
   >img{
-    height: 80%;
+    height: 50%;
+    margin-right: 10%;
   }
   &::before{
     content: '';
@@ -109,5 +121,8 @@ export default {
     border-right:1rem solid transparent;
     border-top:1.2rem solid $jike-yellow;
   }
+}
+#newActivity div img{
+  transform: scale(2.5);
 }
 </style>

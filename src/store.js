@@ -20,7 +20,7 @@ export default new Vuex.Store({
     },
     letMessageShow () {
       this.state.showMessage = true
-      setInterval(() => { this.state.showMessage = false }, 5000)
+      // setInterval(() => { this.state.showMessage = false }, 5000)
     }
   },
   actions: {
